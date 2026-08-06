@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 function GateAdmin() {
     const [gates, setGates] = useState([]);
+    const [airports, setAirports] = useState([]);
 
     const [gate, setGate] = useState({
         gateNumber: "",
@@ -19,6 +20,13 @@ function GateAdmin() {
             .then((response) => response.json())
             .then((data) => setGates(data))
             .catch((error) => console.error(error));
+
+
+        fetch("http://localhost:8080/airports")
+            .then((response) => response.json())
+            .then((data) => setAirports(data))
+            .catch((error) => console.error(error));
+
     }, []);
 
 
@@ -113,6 +121,23 @@ function GateAdmin() {
                     })
                 }
             />
+            <select
+                value={gate.airport.id}
+                onChange={(e) =>
+                    setGate({
+                        ...gate,
+                        airport: {
+                            id: Number(e.target.value)
+                        }
+                    })
+                }
+            >
+                {airports.map((airport) => (
+                    <option key={airport.id} value={airport.id}>
+                        {airport.name}
+                    </option>
+                ))}
+            </select>
 
             <button onClick={editingId ? updateGate : createGate}>
                 {editingId ? "Update Gate" : "Add Gate"}

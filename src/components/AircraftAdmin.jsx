@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 function AircraftAdmin() {
     const [aircraft, setAircraft] = useState([]);
+    const [airlines, setAirlines] = useState([]);
 
     const [aircraftForm, setAircraftForm] = useState({
         model: "",
@@ -20,6 +21,13 @@ function AircraftAdmin() {
             .then((response) => response.json())
             .then((data) => setAircraft(data))
             .catch((error) => console.error(error));
+
+
+        fetch("http://localhost:8080/airlines")
+            .then((response) => response.json())
+            .then((data) => setAirlines(data))
+            .catch((error) => console.error(error));
+
     }, []);
 
 
@@ -130,6 +138,23 @@ function AircraftAdmin() {
                     })
                 }
             />
+            <select
+                value={aircraftForm.airline.id}
+                onChange={(e) =>
+                    setAircraftForm({
+                        ...aircraftForm,
+                        airline: {
+                            id: Number(e.target.value)
+                        }
+                    })
+                }
+            >
+                {airlines.map((airline) => (
+                    <option key={airline.id} value={airline.id}>
+                        {airline.name}
+                    </option>
+                ))}
+            </select>
 
             <button onClick={editingId ? updateAircraft : createAircraft}>
                 {editingId ? "Update Aircraft" : "Add Aircraft"}
