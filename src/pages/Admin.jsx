@@ -1,6 +1,9 @@
 import { useState } from "react";
 import FlightAdmin from "../components/FlightAdmin";
 import AirportAdmin from "../components/AirportAdmin";
+import AirlineAdmin from "../components/AirlineAdmin";
+import GateAdmin from "../components/GateAdmin";
+import AircraftAdmin from "../components/AircraftAdmin";
 
 function Admin() {
     const [section, setSection] = useState("flights");
@@ -35,17 +38,11 @@ function Admin() {
 
             {section === "airports" && <AirportAdmin />}
 
-            {section === "airlines" && (
-                <h2>Airline Management</h2>
-            )}
+            {section === "airlines" && <AirlineAdmin />}
 
-            {section === "aircraft" && (
-                <h2>Aircraft Management</h2>
-            )}
+            {section === "aircraft" && <AircraftAdmin />}
 
-            {section === "gates" && (
-                <h2>Gate Management</h2>
-            )}
+            {section === "gates" && <GateAdmin />}
         </div>
     );
 }
