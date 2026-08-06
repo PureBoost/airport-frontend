@@ -1,5 +1,6 @@
 import { useState } from "react";
 import FlightAdmin from "../components/FlightAdmin";
+import AirportAdmin from "../components/AirportAdmin";
 
 function Admin() {
     const [section, setSection] = useState("flights");
@@ -32,9 +33,7 @@ function Admin() {
 
             {section === "flights" && <FlightAdmin />}
 
-            {section === "airports" && (
-                <h2>Airport Management</h2>
-            )}
+            {section === "airports" && <AirportAdmin />}
 
             {section === "airlines" && (
                 <h2>Airline Management</h2>
