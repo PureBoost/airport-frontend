@@ -104,7 +104,7 @@ function FlightAdmin() {
                 id: selectedFlight.airline.id
             },
             aircraft: {
-                id: selectedFlight.aircraft.id
+                id: selectedFlight.aircraft ? selectedFlight.aircraft.id : 1
             },
             gate: {
                 id: selectedFlight.gate.id
@@ -261,6 +261,22 @@ function FlightAdmin() {
             >
                 <option>Departure</option>
                 <option>Arrival</option>
+            </select>
+
+            <select
+                value={flight.status}
+                onChange={(e) =>
+                    setFlight({
+                        ...flight,
+                        status: e.target.value
+                    })
+                }
+            >
+                <option>On Time</option>
+                <option>Delayed</option>
+                <option>Cancelled</option>
+                <option>Boarding</option>
+                <option>Departed</option>
             </select>
 
 
