@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { apiFetch } from "../api";
 
 function FlightAdmin() {
     const [flights, setFlights] = useState([]);
@@ -26,11 +27,11 @@ function FlightAdmin() {
 
     useEffect(() => {
         Promise.all([
-            fetch("http://localhost:8080/flights").then(res => res.json()),
-            fetch("http://localhost:8080/airports").then(res => res.json()),
-            fetch("http://localhost:8080/airlines").then(res => res.json()),
-            fetch("http://localhost:8080/aircraft").then(res => res.json()),
-            fetch("http://localhost:8080/gates").then(res => res.json())
+            apiFetch("/flights").then(res => res.json()),
+            apiFetch("/airports").then(res => res.json()),
+            apiFetch("/airlines").then(res => res.json()),
+            apiFetch("/aircraft").then(res => res.json()),
+            apiFetch("/gates").then(res => res.json())
         ])
             .then(([flights, airports, airlines, aircraft, gates]) => {
                 setFlights(flights);
@@ -47,7 +48,7 @@ function FlightAdmin() {
 
 
     function createFlight() {
-        fetch("http://localhost:8080/flights", {
+        apiFetch("/flights", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -62,7 +63,7 @@ function FlightAdmin() {
 
 
     function deleteFlight(id) {
-        fetch(`http://localhost:8080/flights/${id}`, {
+        apiFetch(`/flights/${id}`, {
             method: "DELETE"
         })
             .then(() => {
@@ -74,7 +75,7 @@ function FlightAdmin() {
 
 
     function updateFlight() {
-        fetch(`http://localhost:8080/flights/${editingId}`, {
+        apiFetch(`/flights/${editingId}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
@@ -292,7 +293,7 @@ function FlightAdmin() {
 
 
 
-            <table border="1" cellPadding="5">
+            <table cellPadding="5">
                 <thead>
                 <tr>
                     <th>Flight</th>

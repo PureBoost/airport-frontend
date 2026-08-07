@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { apiFetch } from "../api";
 
 function AirlineAdmin() {
     const [airlines, setAirlines] = useState([]);
@@ -12,7 +13,7 @@ function AirlineAdmin() {
 
 
     useEffect(() => {
-        fetch("http://localhost:8080/airlines")
+        apiFetch("/airlines")
             .then((response) => response.json())
             .then((data) => setAirlines(data))
             .catch((error) => console.error(error));
@@ -20,7 +21,7 @@ function AirlineAdmin() {
 
 
     function createAirline() {
-        fetch("http://localhost:8080/airlines", {
+        apiFetch("/airlines", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -35,7 +36,7 @@ function AirlineAdmin() {
 
 
     function deleteAirline(id) {
-        fetch(`http://localhost:8080/airlines/${id}`, {
+        apiFetch(`/airlines/${id}`, {
             method: "DELETE"
         })
             .then(() => {
@@ -57,7 +58,7 @@ function AirlineAdmin() {
 
 
     function updateAirline() {
-        fetch(`http://localhost:8080/airlines/${editingId}`, {
+        apiFetch(`/airlines/${editingId}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
@@ -120,7 +121,7 @@ function AirlineAdmin() {
             </div>
 
 
-            <table border="1" cellPadding="5">
+            <table cellPadding="5">
                 <thead>
                 <tr>
                     <th>Name</th>

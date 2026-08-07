@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { apiFetch } from "../api";
 
 function GateAdmin() {
     const [gates, setGates] = useState([]);
@@ -16,13 +17,13 @@ function GateAdmin() {
 
 
     useEffect(() => {
-        fetch("http://localhost:8080/gates")
+        apiFetch("/gates")
             .then((response) => response.json())
             .then((data) => setGates(data))
             .catch((error) => console.error(error));
 
 
-        fetch("http://localhost:8080/airports")
+        apiFetch("/airports")
             .then((response) => response.json())
             .then((data) => setAirports(data))
             .catch((error) => console.error(error));
@@ -31,7 +32,7 @@ function GateAdmin() {
 
 
     function createGate() {
-        fetch("http://localhost:8080/gates", {
+        apiFetch("/gates", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -46,7 +47,7 @@ function GateAdmin() {
 
 
     function deleteGate(id) {
-        fetch(`http://localhost:8080/gates/${id}`, {
+        apiFetch(`/gates/${id}`, {
             method: "DELETE"
         })
             .then(() => {
@@ -71,7 +72,7 @@ function GateAdmin() {
 
 
     function updateGate() {
-        fetch(`http://localhost:8080/gates/${editingId}`, {
+        apiFetch(`/gates/${editingId}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
@@ -154,7 +155,7 @@ function GateAdmin() {
             </div>
 
 
-            <table border="1" cellPadding="5">
+            <table cellPadding="5">
                 <thead>
                 <tr>
                     <th>Gate</th>

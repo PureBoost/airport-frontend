@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { apiFetch } from "../api";
 
 function AircraftAdmin() {
     const [aircraft, setAircraft] = useState([]);
@@ -17,13 +18,15 @@ function AircraftAdmin() {
 
 
     useEffect(() => {
-        fetch("http://localhost:8080/aircraft")
+        apiFetch("/aircraft")
             .then((response) => response.json())
             .then((data) => setAircraft(data))
             .catch((error) => console.error(error));
 
 
-        fetch("http://localhost:8080/airlines")
+
+
+        apiFetch("/airlines")
             .then((response) => response.json())
             .then((data) => setAirlines(data))
             .catch((error) => console.error(error));
@@ -32,7 +35,7 @@ function AircraftAdmin() {
 
 
     function createAircraft() {
-        fetch("http://localhost:8080/aircraft", {
+        apiFetch("/aircraft", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -47,7 +50,7 @@ function AircraftAdmin() {
 
 
     function deleteAircraft(id) {
-        fetch(`http://localhost:8080/aircraft/${id}`, {
+        apiFetch(`/aircraft/${id}`, {
             method: "DELETE"
         })
             .then(() => {
@@ -73,7 +76,7 @@ function AircraftAdmin() {
 
 
     function updateAircraft() {
-        fetch(`http://localhost:8080/aircraft/${editingId}`, {
+        apiFetch(`/aircraft/${editingId}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
@@ -170,7 +173,7 @@ function AircraftAdmin() {
             </div>
 
 
-            <table border="1" cellPadding="5">
+            <table cellPadding="5">
                 <thead>
                 <tr>
                     <th>Model</th>

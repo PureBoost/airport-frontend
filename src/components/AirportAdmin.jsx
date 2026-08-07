@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { apiFetch } from "../api";
 
 function AirportAdmin() {
     const [airports, setAirports] = useState([]);
@@ -10,14 +11,14 @@ function AirportAdmin() {
     });
 
     useEffect(() => {
-        fetch("http://localhost:8080/airports")
+        apiFetch("/airports")
             .then((response) => response.json())
             .then((data) => setAirports(data))
             .catch((error) => console.error(error));
     }, []);
 
     function createAirport() {
-        fetch("http://localhost:8080/airports", {
+        apiFetch("/airports", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -31,7 +32,7 @@ function AirportAdmin() {
     }
 
     function deleteAirport(id) {
-        fetch(`http://localhost:8080/airports/${id}`, {
+        apiFetch(`/airports/${id}`, {
             method: "DELETE"
         })
             .then(() => {
@@ -51,7 +52,7 @@ function AirportAdmin() {
     }
 
     function updateAirport() {
-        fetch(`http://localhost:8080/airports/${editingId}`, {
+        apiFetch(`/airports/${editingId}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
@@ -115,7 +116,7 @@ function AirportAdmin() {
 
 
 
-            <table border="1" cellPadding="5">
+            <table cellPadding="5">
                 <thead>
                 <tr>
                     <th>Name</th>
