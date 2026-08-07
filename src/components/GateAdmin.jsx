@@ -99,55 +99,59 @@ function GateAdmin() {
 
 
     return (
-        <div>
-            <input
-                placeholder="Gate Number"
-                value={gate.gateNumber}
-                onChange={(e) =>
-                    setGate({
-                        ...gate,
-                        gateNumber: e.target.value
-                    })
-                }
-            />
+        <div className="admin-section">
+            <div className="admin-form-grid">
+                <input
+                    placeholder="Gate Number"
+                    value={gate.gateNumber}
+                    onChange={(e) =>
+                        setGate({
+                            ...gate,
+                            gateNumber: e.target.value
+                        })
+                    }
+                />
 
-            <input
-                placeholder="Terminal"
-                value={gate.terminal}
-                onChange={(e) =>
-                    setGate({
-                        ...gate,
-                        terminal: e.target.value
-                    })
-                }
-            />
-            <select
-                value={gate.airport.id}
-                onChange={(e) =>
-                    setGate({
-                        ...gate,
-                        airport: {
-                            id: Number(e.target.value)
-                        }
-                    })
-                }
-            >
-                {airports.map((airport) => (
-                    <option key={airport.id} value={airport.id}>
-                        {airport.name}
-                    </option>
-                ))}
-            </select>
+                <input
+                    placeholder="Terminal"
+                    value={gate.terminal}
+                    onChange={(e) =>
+                        setGate({
+                            ...gate,
+                            terminal: e.target.value
+                        })
+                    }
+                />
+                <select
+                    value={gate.airport.id}
+                    onChange={(e) =>
+                        setGate({
+                            ...gate,
+                            airport: {
+                                id: Number(e.target.value)
+                            }
+                        })
+                    }
+                >
+                    {airports.map((airport) => (
+                        <option key={airport.id} value={airport.id}>
+                            {airport.name}
+                        </option>
+                    ))}
+                </select>
+            </div>
 
-            <button onClick={editingId ? updateGate : createGate}>
-                {editingId ? "Update Gate" : "Add Gate"}
-            </button>
-
-            {editingId && (
-                <button onClick={cancelEdit}>
-                    Cancel Edit
+            <div className="admin-actions">
+                <button onClick={editingId ? updateGate : createGate}>
+                    {editingId ? "Update Gate" : "Add Gate"}
                 </button>
-            )}
+
+                {editingId && (
+                    <button onClick={cancelEdit}>
+                        Cancel Edit
+                    </button>
+                )}
+            </div>
 
 
             <table border="1" cellPadding="5">
@@ -168,13 +172,15 @@ function GateAdmin() {
                         <td>{gate.airport.name}</td>
 
                         <td>
-                            <button onClick={() => editGate(gate)}>
-                                Edit
-                            </button>
+                            <div className="admin-table-actions">
+                                <button onClick={() => editGate(gate)}>
+                                    Edit
+                                </button>
 
-                            <button onClick={() => deleteGate(gate.id)}>
-                                Delete
-                            </button>
+                                <button onClick={() => deleteGate(gate.id)}>
+                                    Delete
+                                </button>
+                            </div>
                         </td>
                     </tr>
                 ))}

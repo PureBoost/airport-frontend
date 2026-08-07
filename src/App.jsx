@@ -6,16 +6,24 @@ function App() {
     const [page, setPage] = useState("home");
 
     return (
-        <div>
-            <button onClick={() => setPage("home")}>
-                Home
-            </button>
+        <div className="app-shell">
+            <header className="top-nav">
+                <nav className="nav-buttons">
+                    <button
+                        className={page === "home" ? "nav-button active" : "nav-button"}
+                        onClick={() => setPage("home")}
+                    >
+                        Home
+                    </button>
 
-            <button onClick={() => setPage("admin")}>
-                Admin
-            </button>
-
-            <hr />
+                    <button
+                        className={page === "admin" ? "nav-button active" : "nav-button"}
+                        onClick={() => setPage("admin")}
+                    >
+                        Admin
+                    </button>
+                </nav>
+            </header>
 
             {page === "home" && <Home />}
             {page === "admin" && <Admin />}

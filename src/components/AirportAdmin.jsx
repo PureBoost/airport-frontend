@@ -74,43 +74,46 @@ function AirportAdmin() {
     }
 
     return (
-        <div>
-            <h3>Add Airport</h3>
+        <div className="admin-section">
 
-            <input
-                placeholder="Airport Name"
-                value={airport.name}
-                onChange={(e) =>
-                    setAirport({
-                        ...airport,
-                        name: e.target.value
-                    })
-                }
-            />
+            <div className="admin-form-grid">
+                <input
+                    placeholder="Airport Name"
+                    value={airport.name}
+                    onChange={(e) =>
+                        setAirport({
+                            ...airport,
+                            name: e.target.value
+                        })
+                    }
+                />
 
-            <input
-                placeholder="Airport Code"
-                value={airport.code}
-                onChange={(e) =>
-                    setAirport({
-                        ...airport,
-                        code: e.target.value
-                    })
-                }
-            />
+                <input
+                    placeholder="Airport Code"
+                    value={airport.code}
+                    onChange={(e) =>
+                        setAirport({
+                            ...airport,
+                            code: e.target.value
+                        })
+                    }
+                />
+            </div>
 
-            <button onClick={editingId ? updateAirport : createAirport}>
-                {editingId ? "Update Airport" : "Add Airport"}
-            </button>
-
-            {editingId && (
-                <button onClick={cancelEdit}>
-                    Cancel Edit
+            <div className="admin-actions">
+                <button onClick={editingId ? updateAirport : createAirport}>
+                    {editingId ? "Update Airport" : "Add Airport"}
                 </button>
-            )}
+
+                {editingId && (
+                    <button onClick={cancelEdit}>
+                        Cancel Edit
+                    </button>
+                )}
+            </div>
 
 
-            <h3>Airport List</h3>
+
 
             <table border="1" cellPadding="5">
                 <thead>
@@ -127,13 +130,15 @@ function AirportAdmin() {
                         <td>{airport.name}</td>
                         <td>{airport.code}</td>
                         <td>
-                            <button onClick={() => editAirport(airport)}>
-                                Edit
-                            </button>
+                            <div className="admin-table-actions">
+                                <button onClick={() => editAirport(airport)}>
+                                    Edit
+                                </button>
 
-                            <button onClick={() => deleteAirport(airport.id)}>
-                                Delete
-                            </button>
+                                <button onClick={() => deleteAirport(airport.id)}>
+                                    Delete
+                                </button>
+                            </div>
                         </td>
                     </tr>
                 ))}

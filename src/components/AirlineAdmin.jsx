@@ -82,38 +82,42 @@ function AirlineAdmin() {
 
 
     return (
-        <div>
-            <input
-                placeholder="Airline Name"
-                value={airline.name}
-                onChange={(e) =>
-                    setAirline({
-                        ...airline,
-                        name: e.target.value
-                    })
-                }
-            />
+        <div className="admin-section">
+            <div className="admin-form-grid">
+                <input
+                    placeholder="Airline Name"
+                    value={airline.name}
+                    onChange={(e) =>
+                        setAirline({
+                            ...airline,
+                            name: e.target.value
+                        })
+                    }
+                />
 
-            <input
-                placeholder="Airline Code"
-                value={airline.code}
-                onChange={(e) =>
-                    setAirline({
-                        ...airline,
-                        code: e.target.value
-                    })
-                }
-            />
+                <input
+                    placeholder="Airline Code"
+                    value={airline.code}
+                    onChange={(e) =>
+                        setAirline({
+                            ...airline,
+                            code: e.target.value
+                        })
+                    }
+                />
+            </div>
 
-            <button onClick={editingId ? updateAirline : createAirline}>
-                {editingId ? "Update Airline" : "Add Airline"}
-            </button>
-
-            {editingId && (
-                <button onClick={cancelEdit}>
-                    Cancel Edit
+            <div className="admin-actions">
+                <button onClick={editingId ? updateAirline : createAirline}>
+                    {editingId ? "Update Airline" : "Add Airline"}
                 </button>
-            )}
+
+                {editingId && (
+                    <button onClick={cancelEdit}>
+                        Cancel Edit
+                    </button>
+                )}
+            </div>
 
 
             <table border="1" cellPadding="5">
@@ -131,13 +135,15 @@ function AirlineAdmin() {
                         <td>{airline.name}</td>
                         <td>{airline.code}</td>
                         <td>
-                            <button onClick={() => editAirline(airline)}>
-                                Edit
-                            </button>
+                            <div className="admin-table-actions">
+                                <button onClick={() => editAirline(airline)}>
+                                    Edit
+                                </button>
 
-                            <button onClick={() => deleteAirline(airline.id)}>
-                                Delete
-                            </button>
+                                <button onClick={() => deleteAirline(airline.id)}>
+                                    Delete
+                                </button>
+                            </div>
                         </td>
                     </tr>
                 ))}

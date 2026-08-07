@@ -136,163 +136,161 @@ function FlightAdmin() {
 
 
     return (
-        <div>
+        <div className="admin-section">
 
-            <h2>Add Flight</h2>
+            <div className="admin-form-grid">
+                <input
+                    placeholder="Flight Number"
+                    value={flight.flightNumber}
+                    onChange={(e) =>
+                        setFlight({
+                            ...flight,
+                            flightNumber: e.target.value
+                        })
+                    }
+                />
 
-            <input
-                placeholder="Flight Number"
-                value={flight.flightNumber}
-                onChange={(e) =>
-                    setFlight({
-                        ...flight,
-                        flightNumber: e.target.value
-                    })
-                }
-            />
+                <input
+                    placeholder="Origin"
+                    value={flight.origin}
+                    onChange={(e) =>
+                        setFlight({
+                            ...flight,
+                            origin: e.target.value
+                        })
+                    }
+                />
 
-            <input
-                placeholder="Origin"
-                value={flight.origin}
-                onChange={(e) =>
-                    setFlight({
-                        ...flight,
-                        origin: e.target.value
-                    })
-                }
-            />
+                <input
+                    placeholder="Destination"
+                    value={flight.destination}
+                    onChange={(e) =>
+                        setFlight({
+                            ...flight,
+                            destination: e.target.value
+                        })
+                    }
+                />
+            </div>
 
-            <input
-                placeholder="Destination"
-                value={flight.destination}
-                onChange={(e) =>
-                    setFlight({
-                        ...flight,
-                        destination: e.target.value
-                    })
-                }
-            />
+            <div className="admin-form-grid">
+                <select
+                    value={flight.airport.id}
+                    onChange={(e) =>
+                        setFlight({
+                            ...flight,
+                            airport: {
+                                id: Number(e.target.value)
+                            }
+                        })
+                    }
+                >
+                    {airports.map((airport) => (
+                        <option key={airport.id} value={airport.id}>
+                            {airport.name}
+                        </option>
+                    ))}
+                </select>
 
+                <select
+                    value={flight.airline.id}
+                    onChange={(e) =>
+                        setFlight({
+                            ...flight,
+                            airline: {
+                                id: Number(e.target.value)
+                            }
+                        })
+                    }
+                >
+                    {airlines.map((airline) => (
+                        <option key={airline.id} value={airline.id}>
+                            {airline.name}
+                        </option>
+                    ))}
+                </select>
 
-            <select
-                value={flight.airport.id}
-                onChange={(e) =>
-                    setFlight({
-                        ...flight,
-                        airport: {
-                            id: Number(e.target.value)
-                        }
-                    })
-                }
-            >
-                {airports.map((airport) => (
-                    <option key={airport.id} value={airport.id}>
-                        {airport.name}
-                    </option>
-                ))}
-            </select>
+                <select
+                    value={flight.aircraft.id}
+                    onChange={(e) =>
+                        setFlight({
+                            ...flight,
+                            aircraft: {
+                                id: Number(e.target.value)
+                            }
+                        })
+                    }
+                >
+                    {aircraft.map((plane) => (
+                        <option key={plane.id} value={plane.id}>
+                            {plane.model}
+                        </option>
+                    ))}
+                </select>
 
+                <select
+                    value={flight.gate.id}
+                    onChange={(e) =>
+                        setFlight({
+                            ...flight,
+                            gate: {
+                                id: Number(e.target.value)
+                            }
+                        })
+                    }
+                >
+                    {gates.map((gate) => (
+                        <option key={gate.id} value={gate.id}>
+                            {gate.gateNumber}
+                        </option>
+                    ))}
+                </select>
+            </div>
 
-            <select
-                value={flight.airline.id}
-                onChange={(e) =>
-                    setFlight({
-                        ...flight,
-                        airline: {
-                            id: Number(e.target.value)
-                        }
-                    })
-                }
-            >
-                {airlines.map((airline) => (
-                    <option key={airline.id} value={airline.id}>
-                        {airline.name}
-                    </option>
-                ))}
-            </select>
+            <div className="admin-form-grid">
+                <select
+                    value={flight.type}
+                    onChange={(e) =>
+                        setFlight({
+                            ...flight,
+                            type: e.target.value
+                        })
+                    }
+                >
+                    <option>Departure</option>
+                    <option>Arrival</option>
+                </select>
 
+                <select
+                    value={flight.status}
+                    onChange={(e) =>
+                        setFlight({
+                            ...flight,
+                            status: e.target.value
+                        })
+                    }
+                >
+                    <option>On Time</option>
+                    <option>Delayed</option>
+                    <option>Cancelled</option>
+                    <option>Boarding</option>
+                    <option>Departed</option>
+                </select>
+            </div>
 
-            <select
-                value={flight.aircraft.id}
-                onChange={(e) =>
-                    setFlight({
-                        ...flight,
-                        aircraft: {
-                            id: Number(e.target.value)
-                        }
-                    })
-                }
-            >
-                {aircraft.map((plane) => (
-                    <option key={plane.id} value={plane.id}>
-                        {plane.model}
-                    </option>
-                ))}
-            </select>
-
-
-            <select
-                value={flight.gate.id}
-                onChange={(e) =>
-                    setFlight({
-                        ...flight,
-                        gate: {
-                            id: Number(e.target.value)
-                        }
-                    })
-                }
-            >
-                {gates.map((gate) => (
-                    <option key={gate.id} value={gate.id}>
-                        {gate.gateNumber}
-                    </option>
-                ))}
-            </select>
-
-
-            <select
-                value={flight.type}
-                onChange={(e) =>
-                    setFlight({
-                        ...flight,
-                        type: e.target.value
-                    })
-                }
-            >
-                <option>Departure</option>
-                <option>Arrival</option>
-            </select>
-
-            <select
-                value={flight.status}
-                onChange={(e) =>
-                    setFlight({
-                        ...flight,
-                        status: e.target.value
-                    })
-                }
-            >
-                <option>On Time</option>
-                <option>Delayed</option>
-                <option>Cancelled</option>
-                <option>Boarding</option>
-                <option>Departed</option>
-            </select>
-
-
-            <button onClick={editingId ? updateFlight : createFlight}>
-                {editingId ? "Update Flight" : "Add Flight"}
-            </button>
-
-
-            {editingId && (
-                <button onClick={cancelEdit}>
-                    Cancel Edit
+            <div className="admin-actions">
+                <button onClick={editingId ? updateFlight : createFlight}>
+                    {editingId ? "Update Flight" : "Add Flight"}
                 </button>
-            )}
+
+                {editingId && (
+                    <button onClick={cancelEdit}>
+                        Cancel Edit
+                    </button>
+                )}
+            </div>
 
 
-            <h2>Manage Flights</h2>
 
             <table border="1" cellPadding="5">
                 <thead>
@@ -316,13 +314,15 @@ function FlightAdmin() {
                         <td>{flight.status}</td>
 
                         <td>
-                            <button onClick={() => editFlight(flight)}>
-                                Edit
-                            </button>
+                            <div className="admin-table-actions">
+                                <button onClick={() => editFlight(flight)}>
+                                    Edit
+                                </button>
 
-                            <button onClick={() => deleteFlight(flight.id)}>
-                                Delete
-                            </button>
+                                <button onClick={() => deleteFlight(flight.id)}>
+                                    Delete
+                                </button>
+                            </div>
                         </td>
                     </tr>
                 ))}

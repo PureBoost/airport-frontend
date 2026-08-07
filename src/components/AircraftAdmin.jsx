@@ -102,69 +102,72 @@ function AircraftAdmin() {
 
 
     return (
-        <div>
-            <h2>Manage Aircraft</h2>
+        <div className="admin-section">
 
-            <input
-                placeholder="Model"
-                value={aircraftForm.model}
-                onChange={(e) =>
-                    setAircraftForm({
-                        ...aircraftForm,
-                        model: e.target.value
-                    })
-                }
-            />
+            <div className="admin-form-grid">
+                <input
+                    placeholder="Model"
+                    value={aircraftForm.model}
+                    onChange={(e) =>
+                        setAircraftForm({
+                            ...aircraftForm,
+                            model: e.target.value
+                        })
+                    }
+                />
 
-            <input
-                placeholder="Registration"
-                value={aircraftForm.registration}
-                onChange={(e) =>
-                    setAircraftForm({
-                        ...aircraftForm,
-                        registration: e.target.value
-                    })
-                }
-            />
+                <input
+                    placeholder="Registration"
+                    value={aircraftForm.registration}
+                    onChange={(e) =>
+                        setAircraftForm({
+                            ...aircraftForm,
+                            registration: e.target.value
+                        })
+                    }
+                />
 
-            <input
-                placeholder="Capacity"
-                type="number"
-                value={aircraftForm.capacity}
-                onChange={(e) =>
-                    setAircraftForm({
-                        ...aircraftForm,
-                        capacity: e.target.value
-                    })
-                }
-            />
-            <select
-                value={aircraftForm.airline.id}
-                onChange={(e) =>
-                    setAircraftForm({
-                        ...aircraftForm,
-                        airline: {
-                            id: Number(e.target.value)
-                        }
-                    })
-                }
-            >
-                {airlines.map((airline) => (
-                    <option key={airline.id} value={airline.id}>
-                        {airline.name}
-                    </option>
-                ))}
-            </select>
+                <input
+                    placeholder="Capacity"
+                    type="number"
+                    value={aircraftForm.capacity}
+                    onChange={(e) =>
+                        setAircraftForm({
+                            ...aircraftForm,
+                            capacity: e.target.value
+                        })
+                    }
+                />
+                <select
+                    value={aircraftForm.airline.id}
+                    onChange={(e) =>
+                        setAircraftForm({
+                            ...aircraftForm,
+                            airline: {
+                                id: Number(e.target.value)
+                            }
+                        })
+                    }
+                >
+                    {airlines.map((airline) => (
+                        <option key={airline.id} value={airline.id}>
+                            {airline.name}
+                        </option>
+                    ))}
+                </select>
+            </div>
 
-            <button onClick={editingId ? updateAircraft : createAircraft}>
-                {editingId ? "Update Aircraft" : "Add Aircraft"}
-            </button>
-
-            {editingId && (
-                <button onClick={cancelEdit}>
-                    Cancel Edit
+            <div className="admin-actions">
+                <button onClick={editingId ? updateAircraft : createAircraft}>
+                    {editingId ? "Update Aircraft" : "Add Aircraft"}
                 </button>
-            )}
+
+                {editingId && (
+                    <button onClick={cancelEdit}>
+                        Cancel Edit
+                    </button>
+                )}
+            </div>
 
 
             <table border="1" cellPadding="5">
@@ -187,13 +190,15 @@ function AircraftAdmin() {
                         <td>{plane.airline.name}</td>
 
                         <td>
-                            <button onClick={() => editAircraft(plane)}>
-                                Edit
-                            </button>
+                            <div className="admin-table-actions">
+                                <button onClick={() => editAircraft(plane)}>
+                                    Edit
+                                </button>
 
-                            <button onClick={() => deleteAircraft(plane.id)}>
-                                Delete
-                            </button>
+                                <button onClick={() => deleteAircraft(plane.id)}>
+                                    Delete
+                                </button>
+                            </div>
                         </td>
                     </tr>
                 ))}

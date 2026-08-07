@@ -1,111 +1,260 @@
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
-
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
-
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
+  font-family: Inter, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: #e8f1ff;
+  background: #050b14;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
-
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
+* {
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
+  background: linear-gradient(135deg, #060b14 0%, #0d1726 100%);
+  color: #e8f1ff;
 }
 
 #root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
+  min-height: 100vh;
 }
 
 h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
-}
-
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
-  }
-}
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
-}
+h2,
 p {
   margin: 0;
 }
 
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
+h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #f8fbff;
 }
 
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
+h2 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #f8fbff;
+  margin-bottom: 10px;
 }
+
+/* App (Navbar) layout */
+.app-shell {
+  min-height: 100vh;
+}
+
+.top-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 14px 24px;
+  background: #0a101a;
+  border-bottom: 1px solid #223044;
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.nav-button {
+  border: 1px solid #2d4058;
+  background: transparent;
+  color: #cfd9e7;
+  padding: 8px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.nav-button.active {
+  background: #1d3450;
+  color: #f8fbff;
+  border-color: #3c5874;
+}
+
+/* Home page styling */
+.home-shell {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.home-title {
+  margin-bottom: 8px;
+}
+
+.home-subtitle {
+  color: #8da0bc;
+  margin-bottom: 16px;
+}
+
+.home-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding: 10px 14px;
+  background: #101827;
+  border: 1px solid #223044;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.home-controls label {
+  font-weight: 600;
+  color: #d8e7ff;
+}
+
+.home-controls select {
+  border: 1px solid #31435b;
+  border-radius: 6px;
+  padding: 7px 10px;
+  background: #0d1523;
+  color: #f8fbff;
+}
+
+.home-section {
+  background: #0f1726;
+  border: 1px solid #223044;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.24);
+}
+
+.home-section h2 {
+  border-bottom: 1px solid #223044;
+  padding-bottom: 8px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 8px;
+}
+
+th,
+td {
+  padding: 10px 8px;
+  text-align: left;
+  border-bottom: 1px solid #1d2b3d;
+}
+
+th {
+  color: #8da0bc;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+tbody tr:hover {
+  background: #131d2d;
+}
+
+.home-empty {
+  color: #8da0bc;
+  padding: 12px 0 4px;
+}
+/* Admin page styling */
+
+.admin-header-card {
+  margin-bottom: 16px;
+}
+
+.admin-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.admin-button {
+  border: 1px solid #2d4058;
+  background: #0d1523;
+  color: #cfd9e7;
+  padding: 8px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.admin-button.active {
+  background: #1d3450;
+  color: #f8fbff;
+  border-color: #3c5874;
+}
+
+.admin-form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+  margin: 12px 0 14px;
+}
+
+.admin-form-grid input,
+.admin-form-grid select,
+.admin-section input,
+.admin-section select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #2d4058;
+  border-radius: 8px;
+  background: #0d1523;
+  color: #f8fbff;
+}
+
+.admin-form-grid input::placeholder,
+.admin-section input::placeholder {
+  color: #7486a3;
+}
+
+.admin-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 8px 0 14px;
+}
+
+.admin-actions button,
+.admin-section button,
+.admin-table-actions button {
+  border: 1px solid #2d4058;
+  background: #1d3450;
+  color: #f8fbff;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.admin-actions button:hover,
+.admin-section button:hover,
+.admin-table-actions button:hover {
+  background: #264665;
+}
+
+.admin-section {
+  background: #0f1726;
+  border: 1px solid #223044;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.24);
+}
+
+.admin-section h2,
+.admin-section h3 {
+  margin-bottom: 10px;
+}
+
+.admin-table-actions {
+  display: flex;
+  gap: 6px;
+}
+

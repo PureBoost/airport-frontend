@@ -9,30 +9,48 @@ function Admin() {
     const [section, setSection] = useState("flights");
 
     return (
-        <div>
-            <h1>Admin Dashboard</h1>
+        <div className="home-shell">
+            <div className="home-section admin-header-card">
+                <h1 className="home-title">Admin Dashboard</h1>
+                <p className="home-subtitle">Manage airport data and operational settings.</p>
 
-            <button onClick={() => setSection("flights")}>
-                Flights
-            </button>
+                <div className="admin-controls">
+                    <button
+                        className={section === "flights" ? "admin-button active" : "admin-button"}
+                        onClick={() => setSection("flights")}
+                    >
+                        Flights
+                    </button>
 
-            <button onClick={() => setSection("airports")}>
-                Airports
-            </button>
+                    <button
+                        className={section === "airports" ? "admin-button active" : "admin-button"}
+                        onClick={() => setSection("airports")}
+                    >
+                        Airports
+                    </button>
 
-            <button onClick={() => setSection("airlines")}>
-                Airlines
-            </button>
+                    <button
+                        className={section === "airlines" ? "admin-button active" : "admin-button"}
+                        onClick={() => setSection("airlines")}
+                    >
+                        Airlines
+                    </button>
 
-            <button onClick={() => setSection("aircraft")}>
-                Aircraft
-            </button>
+                    <button
+                        className={section === "aircraft" ? "admin-button active" : "admin-button"}
+                        onClick={() => setSection("aircraft")}
+                    >
+                        Aircraft
+                    </button>
 
-            <button onClick={() => setSection("gates")}>
-                Gates
-            </button>
-
-            <hr />
+                    <button
+                        className={section === "gates" ? "admin-button active" : "admin-button"}
+                        onClick={() => setSection("gates")}
+                    >
+                        Gates
+                    </button>
+                </div>
+            </div>
 
             {section === "flights" && <FlightAdmin />}
 

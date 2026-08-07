@@ -32,37 +32,41 @@ function Home() {
     );
 
     return (
-        <div>
-            <h1>Airport System</h1>
+        <div className="home-shell">
+            <h1 className="home-title">Airport Arrivals & Departures</h1>
+            <p className="home-subtitle">Live flight information for the selected airport.</p>
 
-            <label>
-                Select Airport:
-            </label>
+            <div className="home-controls">
+                <label htmlFor="airport-select">
+                    Select Airport:
+                </label>
 
-            <select
-                value={selectedAirport}
-                onChange={(e) => setSelectedAirport(e.target.value)}
-            >
-                {airports.map((airport) => (
-                    <option key={airport.id} value={airport.id}>
-                        {airport.name} ({airport.code})
-                    </option>
-                ))}
-            </select>
+                <select
+                    id="airport-select"
+                    value={selectedAirport}
+                    onChange={(e) => setSelectedAirport(e.target.value)}
+                >
+                    {airports.map((airport) => (
+                        <option key={airport.id} value={airport.id}>
+                            {airport.name} ({airport.code})
+                        </option>
+                    ))}
+                </select>
+            </div>
 
-            <h2>Arrivals</h2>
+            <div className="home-section">
+                <h2>Arrivals</h2>
 
             {arrivals.length === 0 ? (
-                <p>No arrivals.</p>
+                <p className="home-empty">No arrivals.</p>
             ) : (
-                <table border="1" cellPadding="5">
+                <table>
                     <thead>
                     <tr>
                         <th>Flight</th>
                         <th>Origin</th>
                         <th>Airline</th>
                         <th>Gate</th>
-                        <th>Time</th>
                         <th>Status</th>
                     </tr>
                     </thead>
@@ -73,7 +77,6 @@ function Home() {
                             <td>{flight.origin}</td>
                             <td>{flight.airline?.name}</td>
                             <td>{flight.gate?.gateNumber}</td>
-                            <td>{flight.scheduledTime ?? "TBD"}</td>
                             <td>{flight.status}</td>
                         </tr>
                     ))}
@@ -81,12 +84,15 @@ function Home() {
                 </table>
             )}
 
-            <h2>Departures</h2>
+            </div>
+
+            <div className="home-section">
+                <h2>Departures</h2>
 
             {departures.length === 0 ? (
-                <p>No departures.</p>
+                <p className="home-empty">No departures.</p>
             ) : (
-                <table border="1" cellPadding="5">
+                <table>
                     <thead>
                     <tr>
                         <th>Flight</th>
@@ -111,8 +117,8 @@ function Home() {
                     </tbody>
                 </table>
             )}
+            </div>
 
-            <h2>Selected Airport ID: {selectedAirport}</h2>
         </div>
     );
 }
