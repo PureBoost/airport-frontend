@@ -101,7 +101,6 @@ function Home() {
                             <th>Destination</th>
                             <th>Airline</th>
                             <th>Gate</th>
-                            <th>Time</th>
                             <th>Status</th>
                         </tr>
                         </thead>
@@ -112,7 +111,6 @@ function Home() {
                                 <td>{flight.destination}</td>
                                 <td>{flight.airline?.name}</td>
                                 <td>{flight.gate?.gateNumber}</td>
-                                <td>{flight.scheduledTime ?? "TBD"}</td>
                                 <td>{flight.status}</td>
                             </tr>
                         ))}
