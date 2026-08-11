@@ -4,6 +4,7 @@ import { apiFetch } from "../api";
 function AirportAdmin() {
     const [airports, setAirports] = useState([]);
     const [editingId, setEditingId] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     const [airport, setAirport] = useState({
         name: "",
@@ -14,7 +15,8 @@ function AirportAdmin() {
         apiFetch("/airports")
             .then((response) => response.json())
             .then((data) => setAirports(data))
-            .catch((error) => console.error(error));
+            .catch((error) => console.error(error))
+            .finally(() => setLoading(false));
     }, []);
 
     function createAirport() {

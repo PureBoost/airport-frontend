@@ -14,19 +14,20 @@ function GateAdmin() {
     });
 
     const [editingId, setEditingId] = useState(null);
+    const [loading, setLoading] = useState(true);
 
 
     useEffect(() => {
-        apiFetch("/gates")
-            .then((response) => response.json())
-            .then((data) => setGates(data))
-            .catch((error) => console.error(error));
-
-
-        apiFetch("/airports")
-            .then((response) => response.json())
-            .then((data) => setAirports(data))
-            .catch((error) => console.error(error));
+        Promise.all([
+            apiFetch("/gates").then((response) => response.json()),
+            apiFetch("/airports").then((response) => response.json())
+        ])
+            .then(([gateData, airportData]) => {
+                setGates(gateData);
+                setAirports(airportData);
+            })
+            .catch((error) => console.error(error))
+            .finally(() => setLoading(false));
 
     }, []);
 

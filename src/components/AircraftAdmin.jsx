@@ -15,21 +15,20 @@ function AircraftAdmin() {
     });
 
     const [editingId, setEditingId] = useState(null);
+    const [loading, setLoading] = useState(true);
 
 
     useEffect(() => {
-        apiFetch("/aircraft")
-            .then((response) => response.json())
-            .then((data) => setAircraft(data))
-            .catch((error) => console.error(error));
-
-
-
-
-        apiFetch("/airlines")
-            .then((response) => response.json())
-            .then((data) => setAirlines(data))
-            .catch((error) => console.error(error));
+        Promise.all([
+            apiFetch("/aircraft").then((response) => response.json()),
+            apiFetch("/airlines").then((response) => response.json())
+        ])
+            .then(([aircraftData, airlineData]) => {
+                setAircraft(aircraftData);
+                setAirlines(airlineData);
+            })
+            .catch((error) => console.error(error))
+            .finally(() => setLoading(false));
 
     }, []);
 

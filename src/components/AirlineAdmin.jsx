@@ -10,13 +10,15 @@ function AirlineAdmin() {
     });
 
     const [editingId, setEditingId] = useState(null);
+    const [loading, setLoading] = useState(true);
 
 
     useEffect(() => {
         apiFetch("/airlines")
             .then((response) => response.json())
             .then((data) => setAirlines(data))
-            .catch((error) => console.error(error));
+            .catch((error) => console.error(error))
+            .finally(() => setLoading(false));
     }, []);
 
 
