@@ -1,4 +1,4 @@
-const API = "http://localhost:8080";
+const API = "https://airport-api-3ixj.onrender.com";
 
 export async function apiFetch(url, options = {}) {
 

@@ -12,7 +12,7 @@ function Login({ onLogin }) {
         const token = btoa(`${username}:${password}`);
 
         const response = await fetch(
-            "http://localhost:8080/airports",
+            "https://airport-api-3ixj.onrender.com/airports",
             {
                 headers: {
                     Authorization: `Basic ${token}`
