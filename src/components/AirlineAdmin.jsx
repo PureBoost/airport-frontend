@@ -81,6 +81,10 @@ function AirlineAdmin() {
         });
     }
 
+    if (loading) {
+        return <h2>Loading airlines... <br/> This may take a few seconds.</h2>;
+    }
+
 
     return (
         <div className="admin-section">

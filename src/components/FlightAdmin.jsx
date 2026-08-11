@@ -132,7 +132,7 @@ function FlightAdmin() {
 
 
     if (loading) {
-        return <h2>Loading flight data...</h2>;
+        return <h2>Loading flights... <br/> This may take a few seconds.</h2>;
     }
 
 

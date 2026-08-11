@@ -103,6 +103,10 @@ function AircraftAdmin() {
         });
     }
 
+    if (loading) {
+        return <h2>Loading aircraft... <br/> This may take a few seconds.</h2>;
+    }
+
 
     return (
         <div className="admin-section">

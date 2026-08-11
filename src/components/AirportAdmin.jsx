@@ -74,6 +74,10 @@ function AirportAdmin() {
         });
     }
 
+    if (loading) {
+        return <h2>Loading airports... <br/> This may take a few seconds.</h2>;
+    }
+
     return (
         <div className="admin-section">
 

@@ -98,6 +98,10 @@ function GateAdmin() {
         });
     }
 
+    if (loading) {
+        return <h2>Loading gates... <br/> This may take a few seconds.</h2>;
+    }
+
 
     return (
         <div className="admin-section">
