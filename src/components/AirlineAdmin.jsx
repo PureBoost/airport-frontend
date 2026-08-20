@@ -36,6 +36,7 @@ function AirlineAdmin() {
         })
             .then(response => response.json())
             .then(() => {
+                cancelEdit();
                 return loadAirlines();
             });
     }
@@ -73,6 +74,7 @@ function AirlineAdmin() {
         })
             .then(response => response.json())
             .then(() => {
+                cancelEdit();
                 return loadAirlines();
             });
     }

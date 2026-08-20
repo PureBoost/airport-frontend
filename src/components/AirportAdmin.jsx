@@ -33,6 +33,7 @@ function AirportAdmin() {
         })
             .then(response => response.json())
             .then(() => {
+                cancelEdit();
                 return loadAirports();
             });
     }
@@ -67,6 +68,7 @@ function AirportAdmin() {
         })
             .then(response => response.json())
             .then(() => {
+                cancelEdit();
                 return loadAirports();
             });
     }

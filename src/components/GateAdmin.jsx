@@ -46,6 +46,7 @@ function GateAdmin() {
         })
             .then(response => response.json())
             .then(() => {
+                cancelEdit();
                 return loadData();
             });
     }
@@ -86,6 +87,7 @@ function GateAdmin() {
         })
             .then(response => response.json())
             .then(() => {
+                cancelEdit();
                 return loadData();
             });
     }

@@ -47,6 +47,7 @@ function AircraftAdmin() {
         })
             .then(response => response.json())
             .then(() => {
+                cancelEdit();
                 return loadData();
             });
     }
@@ -88,6 +89,7 @@ function AircraftAdmin() {
         })
             .then(response => response.json())
             .then(() => {
+                cancelEdit();
                 return loadData();
             });
     }
