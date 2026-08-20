@@ -5,6 +5,10 @@ function GateAdmin() {
     const [gates, setGates] = useState([]);
     const [airports, setAirports] = useState([]);
 
+    function getDefaultAirportId(data = airports) {
+        return data.length > 0 ? data[0].id : 1;
+    }
+
     const [gate, setGate] = useState({
         gateNumber: "",
         terminal: "",
@@ -24,6 +28,17 @@ function GateAdmin() {
             .then(([gateData, airportData]) => {
                 setGates(gateData);
                 setAirports(airportData);
+
+                if (airportData.length > 0) {
+                    setGate((currentGate) => ({
+                        ...currentGate,
+                        airport: {
+                            id: airportData.some((airport) => airport.id === currentGate.airport.id)
+                                ? currentGate.airport.id
+                                : airportData[0].id
+                        }
+                    }));
+                }
             });
     }
 
@@ -100,7 +115,7 @@ function GateAdmin() {
             gateNumber: "",
             terminal: "",
             airport: {
-                id: 1
+                id: getDefaultAirportId()
             }
         });
     }

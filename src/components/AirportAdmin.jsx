@@ -11,6 +11,13 @@ function AirportAdmin() {
         code: ""
     });
 
+    function getDefaultAirportForm(data = airports) {
+        return {
+            name: "",
+            code: ""
+        };
+    }
+
     function loadAirports() {
         return apiFetch("/airports")
             .then((response) => response.json())
@@ -76,10 +83,7 @@ function AirportAdmin() {
     function cancelEdit() {
         setEditingId(null);
 
-        setAirport({
-            name: "",
-            code: ""
-        });
+        setAirport(getDefaultAirportForm());
     }
 
     if (loading) {

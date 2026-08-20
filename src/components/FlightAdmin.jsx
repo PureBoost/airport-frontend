@@ -12,6 +12,10 @@ function FlightAdmin() {
 
     const [loading, setLoading] = useState(true);
 
+    function getDefaultSelection(data, fallbackId = 1) {
+        return data.length > 0 ? data[0].id : fallbackId;
+    }
+
     const [flight, setFlight] = useState({
         flightNumber: "",
         type: "Departure",
@@ -38,6 +42,30 @@ function FlightAdmin() {
                 setAirlines(airlines);
                 setAircraft(aircraft);
                 setGates(gates);
+
+                setFlight((currentFlight) => ({
+                    ...currentFlight,
+                    airport: {
+                        id: airports.some((airport) => airport.id === currentFlight.airport.id)
+                            ? currentFlight.airport.id
+                            : getDefaultSelection(airports)
+                    },
+                    airline: {
+                        id: airlines.some((airline) => airline.id === currentFlight.airline.id)
+                            ? currentFlight.airline.id
+                            : getDefaultSelection(airlines)
+                    },
+                    aircraft: {
+                        id: aircraft.some((plane) => plane.id === currentFlight.aircraft.id)
+                            ? currentFlight.aircraft.id
+                            : getDefaultSelection(aircraft)
+                    },
+                    gate: {
+                        id: gates.some((gate) => gate.id === currentFlight.gate.id)
+                            ? currentFlight.gate.id
+                            : getDefaultSelection(gates)
+                    }
+                }));
             });
     }
 
@@ -136,10 +164,10 @@ function FlightAdmin() {
             origin: "",
             destination: "",
             status: "On Time",
-            airport: { id: 1 },
-            airline: { id: 1 },
-            aircraft: { id: 1 },
-            gate: { id: 1 }
+            airport: { id: getDefaultSelection(airports) },
+            airline: { id: getDefaultSelection(airlines) },
+            aircraft: { id: getDefaultSelection(aircraft) },
+            gate: { id: getDefaultSelection(gates) }
         });
     }
 

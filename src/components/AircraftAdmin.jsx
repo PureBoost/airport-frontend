@@ -5,6 +5,10 @@ function AircraftAdmin() {
     const [aircraft, setAircraft] = useState([]);
     const [airlines, setAirlines] = useState([]);
 
+    function getDefaultAirlineId(data = airlines) {
+        return data.length > 0 ? data[0].id : 1;
+    }
+
     const [aircraftForm, setAircraftForm] = useState({
         model: "",
         registration: "",
@@ -25,6 +29,17 @@ function AircraftAdmin() {
             .then(([aircraftData, airlineData]) => {
                 setAircraft(aircraftData);
                 setAirlines(airlineData);
+
+                if (airlineData.length > 0) {
+                    setAircraftForm((currentForm) => ({
+                        ...currentForm,
+                        airline: {
+                            id: airlineData.some((airline) => airline.id === currentForm.airline.id)
+                                ? currentForm.airline.id
+                                : airlineData[0].id
+                        }
+                    }));
+                }
             });
     }
 
@@ -103,7 +118,7 @@ function AircraftAdmin() {
             registration: "",
             capacity: "",
             airline: {
-                id: 1
+                id: getDefaultAirlineId()
             }
         });
     }

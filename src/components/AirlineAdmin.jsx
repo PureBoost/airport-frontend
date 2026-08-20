@@ -12,6 +12,13 @@ function AirlineAdmin() {
     const [editingId, setEditingId] = useState(null);
     const [loading, setLoading] = useState(true);
 
+    function getDefaultAirlineForm() {
+        return {
+            name: "",
+            code: ""
+        };
+    }
+
     function loadAirlines() {
         return apiFetch("/airlines")
             .then((response) => response.json())
@@ -83,10 +90,7 @@ function AirlineAdmin() {
     function cancelEdit() {
         setEditingId(null);
 
-        setAirline({
-            name: "",
-            code: ""
-        });
+        setAirline(getDefaultAirlineForm());
     }
 
     if (loading) {
