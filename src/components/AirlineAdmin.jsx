@@ -12,11 +12,15 @@ function AirlineAdmin() {
     const [editingId, setEditingId] = useState(null);
     const [loading, setLoading] = useState(true);
 
+    function loadAirlines() {
+        return apiFetch("/airlines")
+            .then((response) => response.json())
+            .then((data) => setAirlines(data));
+    }
+
 
     useEffect(() => {
-        apiFetch("/airlines")
-            .then((response) => response.json())
-            .then((data) => setAirlines(data))
+        loadAirlines()
             .catch((error) => console.error(error))
             .finally(() => setLoading(false));
     }, []);
@@ -32,7 +36,7 @@ function AirlineAdmin() {
         })
             .then(response => response.json())
             .then(() => {
-                window.location.reload();
+                return loadAirlines();
             });
     }
 
@@ -69,7 +73,7 @@ function AirlineAdmin() {
         })
             .then(response => response.json())
             .then(() => {
-                window.location.reload();
+                return loadAirlines();
             });
     }
 

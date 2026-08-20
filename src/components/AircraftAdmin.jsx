@@ -17,16 +17,20 @@ function AircraftAdmin() {
     const [editingId, setEditingId] = useState(null);
     const [loading, setLoading] = useState(true);
 
-
-    useEffect(() => {
-        Promise.all([
+    function loadData() {
+        return Promise.all([
             apiFetch("/aircraft").then((response) => response.json()),
             apiFetch("/airlines").then((response) => response.json())
         ])
             .then(([aircraftData, airlineData]) => {
                 setAircraft(aircraftData);
                 setAirlines(airlineData);
-            })
+            });
+    }
+
+
+    useEffect(() => {
+        loadData()
             .catch((error) => console.error(error))
             .finally(() => setLoading(false));
 
@@ -43,7 +47,7 @@ function AircraftAdmin() {
         })
             .then(response => response.json())
             .then(() => {
-                window.location.reload();
+                return loadData();
             });
     }
 
@@ -84,7 +88,7 @@ function AircraftAdmin() {
         })
             .then(response => response.json())
             .then(() => {
-                window.location.reload();
+                return loadData();
             });
     }
 

@@ -24,9 +24,8 @@ function FlightAdmin() {
         gate: { id: 1 }
     });
 
-
-    useEffect(() => {
-        Promise.all([
+    function loadData() {
+        return Promise.all([
             apiFetch("/flights").then(res => res.json()),
             apiFetch("/airports").then(res => res.json()),
             apiFetch("/airlines").then(res => res.json()),
@@ -39,9 +38,13 @@ function FlightAdmin() {
                 setAirlines(airlines);
                 setAircraft(aircraft);
                 setGates(gates);
+            });
+    }
 
-                setLoading(false);
-            })
+
+    useEffect(() => {
+        loadData()
+            .then(() => setLoading(false))
             .catch(error => console.error(error));
 
     }, []);
@@ -57,7 +60,12 @@ function FlightAdmin() {
         })
             .then(response => response.json())
             .then(() => {
-                window.location.reload();
+                setLoading(true);
+                return loadData();
+            })
+            .then(() => {
+                cancelEdit();
+                setLoading(false);
             });
     }
 
@@ -84,7 +92,12 @@ function FlightAdmin() {
         })
             .then(response => response.json())
             .then(() => {
-                window.location.reload();
+                setLoading(true);
+                return loadData();
+            })
+            .then(() => {
+                cancelEdit();
+                setLoading(false);
             });
     }
 

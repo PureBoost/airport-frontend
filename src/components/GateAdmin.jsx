@@ -16,16 +16,20 @@ function GateAdmin() {
     const [editingId, setEditingId] = useState(null);
     const [loading, setLoading] = useState(true);
 
-
-    useEffect(() => {
-        Promise.all([
+    function loadData() {
+        return Promise.all([
             apiFetch("/gates").then((response) => response.json()),
             apiFetch("/airports").then((response) => response.json())
         ])
             .then(([gateData, airportData]) => {
                 setGates(gateData);
                 setAirports(airportData);
-            })
+            });
+    }
+
+
+    useEffect(() => {
+        loadData()
             .catch((error) => console.error(error))
             .finally(() => setLoading(false));
 
@@ -42,7 +46,7 @@ function GateAdmin() {
         })
             .then(response => response.json())
             .then(() => {
-                window.location.reload();
+                return loadData();
             });
     }
 
@@ -82,7 +86,7 @@ function GateAdmin() {
         })
             .then(response => response.json())
             .then(() => {
-                window.location.reload();
+                return loadData();
             });
     }
 

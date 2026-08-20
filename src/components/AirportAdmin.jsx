@@ -11,10 +11,14 @@ function AirportAdmin() {
         code: ""
     });
 
-    useEffect(() => {
-        apiFetch("/airports")
+    function loadAirports() {
+        return apiFetch("/airports")
             .then((response) => response.json())
-            .then((data) => setAirports(data))
+            .then((data) => setAirports(data));
+    }
+
+    useEffect(() => {
+        loadAirports()
             .catch((error) => console.error(error))
             .finally(() => setLoading(false));
     }, []);
@@ -29,7 +33,7 @@ function AirportAdmin() {
         })
             .then(response => response.json())
             .then(() => {
-                window.location.reload();
+                return loadAirports();
             });
     }
 
@@ -63,7 +67,7 @@ function AirportAdmin() {
         })
             .then(response => response.json())
             .then(() => {
-                window.location.reload();
+                return loadAirports();
             });
     }
 
